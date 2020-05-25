@@ -1,0 +1,24 @@
+{
+  "name": "js-with-vladilen",
+  "version": "1.0.0",
+  "description": "pure js learning app",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kinokus/js-with-vladilen.git"
+  },
+  "keywords": [
+    "js",
+    "vanillajs",
+    "senior"
+  ],
+  "author": "Aleks Sukonik <aleks.kinokus@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kinokus/js-with-vladilen/issues"
+  },
+  "homepage": "https://github.com/Kinokus/js-with-vladilen#readme"
+}
