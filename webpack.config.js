@@ -1,4 +1,6 @@
-// import path from "path";
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 path = require('path')
 module.exports = {
     context: path.resolve(__dirname, "src"),
@@ -9,6 +11,17 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
+        new CleanWebpackPlugin(),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, 'src/favicon.ico'),
+                to: path.resolve(__dirname, 'dist')
+            }
+        ]),
+        new HtmlWebpackPlugin({
+            template: "index.html"
+        }),
+
 
     ]
 
