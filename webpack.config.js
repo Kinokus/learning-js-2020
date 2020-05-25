@@ -15,15 +15,15 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
-            '@':path.resolve(__dirname,'src'),
-            '@core':path.resolve(__dirname,'src/core')
+            '@': path.resolve(__dirname, 'src'),
+            '@core': path.resolve(__dirname, 'src/core')
         }
     },
     plugins: [
-        new MiniCssExtractPlugin(),
-        new CleanWebpackPlugin({
-            filename:"bundle.[hash].css"
+        new MiniCssExtractPlugin({
+            filename: "bundle.[hash].css"
         }),
+        new CleanWebpackPlugin(),
         new HtmlPlugin({
             template: "index.html"
         }),
@@ -38,6 +38,28 @@ module.exports = {
 
 
     ],
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env"]
+                    }
+                }
+            }
+        ]
+    }
     // module: {
     //     test: /\.css$/i,
     //     use: [MiniCssExtractPlugin.loader, 'css-loader'],
