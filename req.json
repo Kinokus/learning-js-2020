@@ -1,0 +1,30 @@
+{
+  "env": {
+    "webpack": {
+
+      "compile": "Babel",
+      "styling": "Scss",
+      "code": {
+        "linter": "EsLint",
+        "language": "VanillaJS"
+      },
+      "modes": {
+        "dev": {
+          "features": [
+            "Dev server",
+            "SourceMaps",
+            "EsLint",
+            "Not Minified JS",
+            "Not Minified CSS"
+          ]
+        },
+        "prod": {
+          "features": [
+            "Minified Code"
+          ]
+        }
+      }
+    },
+    "git": {}
+  }
+}
