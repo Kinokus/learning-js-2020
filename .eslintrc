@@ -6,7 +6,19 @@
     "node": true
   },
   "rules": {
-
+    "linebreak-style": "off",
+    "semi": "off",
+    "arrow-parens": "off",
+    "comma-dangle": "off",
+    "no-tabs": "off",
+    "require-jsdoc": "off",
+    "indent": [
+      "error",
+      "tab"
+    ]
   },
-  "extends": [""]
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ]
 }
