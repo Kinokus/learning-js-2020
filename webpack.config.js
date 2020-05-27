@@ -10,17 +10,21 @@ const fileName = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
 
 path = require('path')
 
- jsLoaders = () => {
-    const loaders = [{
-        loader:'babel-loader ',
-        options: {
-            presets: ["@babel/preset-env"]
+jsLoaders = () => {
+    const loaders = [
+        {
+            loader: 'babel-loader',
+            options: {
+                presets: ["@babel/preset-env"]
+            }
         }
-    }]
+    ]
 
-     if (isDev){
-
-     }
+    if (isDev) {
+        loaders.push({
+            loader: 'eslint-loader'
+        })
+    }
     return loaders;
 }
 
@@ -86,7 +90,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use:jsLoaders(),
+                use: jsLoaders(),
                 // loader: {
                 //     loader: "babel-loader",
                 //     options: {
