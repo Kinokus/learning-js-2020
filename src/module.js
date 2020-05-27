@@ -1,5 +1,7 @@
 console.log('module.js')
 
 async function f() {
-    await Promise.resolve ()
+    return await Promise.resolve('a')
 }
+
+f().then(console.log)
