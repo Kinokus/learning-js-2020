@@ -25,6 +25,10 @@
         }
       }
     },
-    "git": {}
+    "git": {
+      "usefulCommands": [
+        "git commit -m \"finish project config\""
+      ]
+    }
   }
 }
