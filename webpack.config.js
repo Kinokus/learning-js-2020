@@ -24,9 +24,9 @@ module.exports = {
             '@core': path.resolve(__dirname, 'src/core')
         }
     },
-    devtool: isDev ? 'source-map' : false ,
+    devtool: isDev ? 'source-map' : false,
     devServer: {
-        port:8080,
+        port: 8080,
         hot: isDev
     },
     plugins: [
@@ -56,11 +56,15 @@ module.exports = {
         rules: [
             {
                 test: /\.s[ac]ss$/i,
-                use: [
-                    MiniCssExtractPlugin.loader,
+                use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        hmr: isDev,
+                        reloadAll: true
+                    },
                     'css-loader',
                     'sass-loader',
-                ],
+                }],
             },
             {
                 test: /\.js$/,
