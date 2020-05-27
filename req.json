@@ -27,7 +27,9 @@
     },
     "git": {
       "usefulCommands": [
-        "git commit -m \"finish project config\""
+        "git commit -a -m \"finish project config\"",
+        "git push -u origin webpack",
+        "git checkout master"
       ]
     }
   }
