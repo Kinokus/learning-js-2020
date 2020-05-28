@@ -10,7 +10,7 @@
   padding: 8px 4px 0;
   display: flex;
   justify-content: space-between;
-  background: floralwhite;
+  //background: floralwhite;
   .input {
     min-width: 1px;
     margin: 0;
@@ -32,6 +32,6 @@
   }
 
   .button {
-
+    @include button(red);
   }
 }
