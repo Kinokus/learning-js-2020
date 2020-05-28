@@ -30,10 +30,35 @@
 
         <div class="excel__formula">
             <div class="info button"><i class="material-icons">functions</i></div>
-            <div class="input"></div>
+            <div class="input" contenteditable spellcheck="false"></div>
         </div>
 
-        <div class="excel__table" contenteditable spellcheck="false">
+        <div class="excel__table">
+            <div class="row">
+                <div class="row-info"></div>
+                <div class="row-data">
+                    <div class="column">A</div>
+                    <div class="column">B</div>
+                    <div class="column">C</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row-info"> 1</div>
+                <div class="row-data">
+                    <div class="cell" contenteditable>a 100</div>
+                    <div class="cell" contenteditable>b 200</div>
+                    <div class="cell" contenteditable>c 300</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row-info"> 2</div>
+                <div class="row-data">
+                    <div class="cell" contenteditable>a 200</div>
+                    <div class="cell selected" contenteditable>b 400</div>
+                    <div class="cell" contenteditable>c 600</div>
+                </div>
+            </div>
 
         </div>
 

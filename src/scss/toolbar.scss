@@ -12,6 +12,7 @@
   padding: 7px 10px;
   display: flex;
   .button{
+    color: #888888;
     @include button(green);
   }
 }
