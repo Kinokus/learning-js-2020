@@ -1,11 +1,12 @@
 import {ExcelComponent} from '@core/ExcelComponent';
 
 export class Formula extends ExcelComponent {
-	name() {
-		return 'Formula Component'
-	}
+	static className = 'excel__formula'
 
 	toHtml() {
-		return `<h1>this component called ${this.name()}</h1>`
+		return `
+			<div class="info button"><i class="material-icons">functions</i></div>
+      <div class="input" contenteditable spellcheck="false"></div>
+		`
 	}
 }
