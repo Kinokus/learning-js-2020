@@ -1,7 +1,6 @@
 {
   "env": {
     "webpack": {
-
       "compile": "Babel",
       "styling": "Scss",
       "code": {
