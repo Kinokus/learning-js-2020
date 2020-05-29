@@ -1,4 +1,4 @@
-// import {$} from '@core/dom';
+import {$} from '@core/dom';
 
 export class Excel {
 	constructor(selector, options) {
@@ -7,17 +7,13 @@ export class Excel {
 	}
 
 	getRoot() {
-		// $.create('div', 'excel')
-
-		const $root = document.createElement('div')
+		const $root =		$.create('div', 'excel')
 		$root.classList.add('excel')
 		this.components.forEach(Component => {
-			const $el = document.createElement('div')
-			$el.classList.add(Component.className)
+			const $el = $.create('div', Component.className)
 			const component = new Component($el)
 			$el.innerHTML = component.toHtml()
 			$root.append($el)
-			// $root.insertAdjacentHTML('beforeend', component.toHtml())
 		})
 		return $root
 	}
