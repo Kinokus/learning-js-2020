@@ -1,3 +1,5 @@
+import {Utils} from '@core/utils';
+
 export class DomListener {
 	constructor($root, listeners = []) {
 		if (!$root) {
@@ -8,8 +10,17 @@ export class DomListener {
 	}
 
 	initDomListeners() {
-
+		this.listeners.forEach(listener => {
+			const method = Utils.getMethodName(listener)
+			const name = this.name || '' // todo: set default name in component
+			if (this[method]) {
+				this.$root.on(listener, this[method].bind(this))
+			} else {
+				throw new Error(`Method ${method} not implemented in ${name}`)
+			}
+		})
 	}
 
-	removeDomListeners() {}
+	removeDomListeners() {
+	}
 }

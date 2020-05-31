@@ -2,11 +2,10 @@ import {ExcelComponent} from '@core/ExcelComponent';
 
 export class Formula extends ExcelComponent {
 	static className = 'excel__formula'
-
 	constructor($root) {
 		super($root, {
 			name: 'Formula',
-			listeners: ['input', 'click']
+			listeners: ['input', 'click', 'mousemove']
 		});
 	}
 
@@ -21,5 +20,10 @@ export class Formula extends ExcelComponent {
 
 	onInput(event) {
 		console.log('formula: onInput', event)
+		console.log(this.$root)
+	}
+
+	onClick(event) {
+		console.log('formula: onClick', event)
 	}
 }
