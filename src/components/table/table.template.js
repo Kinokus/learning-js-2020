@@ -4,17 +4,17 @@ const CODES = {
 }
 
 function createCellStructure(content) {
-	return `<div class='cell'>cell</div>`
+	return `<div class='cell'>${content}</div>`
 }
 
 function createColumnStructure(content) {
 	return `<div class='column'>${content}</div>`
 }
 
-function createRowStructure(content) {
+function createRowStructure(content, rowNumber = '') {
 	return `
 		<div class="row">
-			<div class="row-info"></div>
+			<div class="row-info">${rowNumber}</div>
 			<div class="row-data">${content}</div>
 		</div>
 	`
@@ -39,7 +39,12 @@ export function createTable(rowsCount = 15) {
 	rows.push(createRowStructure(cols))
 
 	for (let index = 0; index < rowsCount; index++) {
-		rows.push(createRowStructure())
+		const cells = new Array(columnCount + 1)
+			.fill('')
+			.map(createCellStructure)
+			.join('')
+
+		rows.push(createRowStructure(cells, index + 1))
 	}
 
 	// rows.push(createRowStructure())
