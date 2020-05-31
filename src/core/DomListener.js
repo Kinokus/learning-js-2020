@@ -14,7 +14,8 @@ export class DomListener {
 			const method = Utils.getMethodName(listener)
 			const name = this.name || '' // todo: set default name in component
 			if (this[method]) {
-				this.$root.on(listener, this[method].bind(this))
+				this[method] = this[method].bind(this)
+				this.$root.on(listener, this[method])
 			} else {
 				throw new Error(`Method ${method} not implemented in ${name}`)
 			}
@@ -22,5 +23,9 @@ export class DomListener {
 	}
 
 	removeDomListeners() {
+		this.listeners.forEach(listener => {
+			const method = Utils.getMethodName(listener)
+			this.$root.off(listener, this[method])
+		})
 	}
 }
