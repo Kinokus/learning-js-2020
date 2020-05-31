@@ -11,4 +11,4 @@ export class Utils {
 	}
 }
 
-// can use oure funtions
+// can use pure funtions

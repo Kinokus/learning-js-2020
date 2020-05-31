@@ -1,4 +1,4 @@
-import {Utils} from '@core/utils';
+import {Utils} from '@core/Utils';
 
 export class DomListener {
 	constructor($root, listeners = []) {
