@@ -4,7 +4,7 @@ import {createTable} from '@/components/table/table.template';
 export class Table extends ExcelComponent {
 	static className = 'excel__table'
 	toHtml() {
-		return createTable(5)
+		return createTable(100)
 		// return `
 		//     <div class="row">
 		//         <div class="row-info"></div>

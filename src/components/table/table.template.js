@@ -27,10 +27,10 @@ function toColumnName(_, index) {
 
 export function createTable(rowsCount = 15) {
 	// 65 -90
-	const columnCount = CODES.Z - CODES.A
+	const columnCount = CODES.Z - CODES.A +1
 	const rows = []
 
-	const cols = new Array(columnCount + 1)
+	const cols = new Array(columnCount )
 		.fill('')
 		.map(toColumnName)
 		.map(createColumnStructure)
@@ -39,15 +39,14 @@ export function createTable(rowsCount = 15) {
 	rows.push(createRowStructure(cols))
 
 	for (let index = 0; index < rowsCount; index++) {
-		const cells = new Array(columnCount + 1)
+		const cells = new Array(columnCount )
 			.fill('')
 			.map(createCellStructure)
 			.join('')
 
-		rows.push(createRowStructure(cells, index + 1))
+		rows.push(createRowStructure(cells, index +1))
 	}
 
-	// rows.push(createRowStructure())
 
 	return rows.join('')
 }
