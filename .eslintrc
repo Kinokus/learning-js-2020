@@ -12,6 +12,10 @@
     "comma-dangle": "off",
     "no-tabs": "off",
     "require-jsdoc": "off",
+    "operator-linebreak": [
+      "error",
+      "before"
+    ],
     "indent": [
       "error",
       "tab"
