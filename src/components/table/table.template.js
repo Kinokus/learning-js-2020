@@ -11,14 +11,14 @@ function createColumnStructure(content) {
 	return `
 		<div class='column'>
 			${content}
-			<div class="col-resize"></div>
+			<div class="col-resize" data-resize="col"></div>
 		</div>
 	`
 }
 
 function createRowStructure(content, rowNumber) {
 	const header = rowNumber ? rowNumber : ''
-	const resize = rowNumber ? '<div class="row-resize"></div>' : ''
+	const resize = rowNumber ? '<div class="row-resize" data-resize="row"></div>' : ''
 	return `
 		<div class="row">
 			<div class="row-info">
