@@ -15,7 +15,6 @@
     flex-direction: row;
     min-height: $min-row-height;
     height: $base-row-height;
-
   }
 
   .row-info, .column {
@@ -26,7 +25,7 @@
   }
 
   .row-info {
-
+    position: relative;
     min-width: $info-cell-width;
     height: 100%;
     border: 1px solid $border-color;
@@ -42,6 +41,7 @@
   }
 
   .column {
+    position: relative;
     min-width: $base-cell-width;
     border: 1px solid $border-color;
     height: 100%;
@@ -64,6 +64,35 @@
     &.selected {
       border: none;
       outline: 2px solid $selected-cell-outline-color;
+    }
+  }
+
+  .col-resize, .row-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    &:hover {
+      background-color: $selected-cell-outline-color;
+    }
+
+  }
+
+  .col-resize {
+    top: 0;
+    width: 2px;
+
+    &:hover {
+      cursor: col-resize;
+    }
+  }
+
+  .row-resize {
+    left: 0;
+    height: 2px;
+
+    &:hover {
+      cursor: row-resize;
     }
   }
 

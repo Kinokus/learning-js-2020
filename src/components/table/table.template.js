@@ -8,13 +8,23 @@ function createCellStructure(content) {
 }
 
 function createColumnStructure(content) {
-	return `<div class='column'>${content}</div>`
+	return `
+		<div class='column'>
+			${content}
+			<div class="col-resize"></div>
+		</div>
+	`
 }
 
-function createRowStructure(content, rowNumber = '') {
+function createRowStructure(content, rowNumber) {
+	const header = rowNumber ? rowNumber : ''
+	const resize = rowNumber ? '<div class="row-resize"></div>' : ''
 	return `
 		<div class="row">
-			<div class="row-info">${rowNumber}</div>
+			<div class="row-info">
+				${header}
+				${resize}
+			</div>
 			<div class="row-data">${content}</div>
 		</div>
 	`
@@ -27,24 +37,24 @@ function toColumnName(_, index) {
 
 export function createTable(rowsCount = 15) {
 	// 65 -90
-	const columnCount = CODES.Z - CODES.A +1
+	const columnCount = CODES.Z - CODES.A + 1
 	const rows = []
 
-	const cols = new Array(columnCount )
+	const cols = new Array(columnCount)
 		.fill('')
 		.map(toColumnName)
 		.map(createColumnStructure)
 		.join('')
 
-	rows.push(createRowStructure(cols))
+	rows.push(createRowStructure(cols, null))
 
 	for (let index = 0; index < rowsCount; index++) {
-		const cells = new Array(columnCount )
+		const cells = new Array(columnCount)
 			.fill('')
 			.map(createCellStructure)
 			.join('')
 
-		rows.push(createRowStructure(cells, index +1))
+		rows.push(createRowStructure(cells, index + 1))
 	}
 
 
