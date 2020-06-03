@@ -32,12 +32,27 @@ export class Table extends ExcelComponent {
 			console.log($parent);
 
 
+			const dataPositionX = $parent.$el.getAttribute('data-position-x')
+			const columnCellsSelector
+				= `[data-position-x="${dataPositionX}"][data-type="cell"]`
+			const columnCells = document.querySelectorAll(columnCellsSelector);
+			console.log(columnCells);
+
+
 			switch (event.target.dataset.resize) {
 			case 'col': {
 				document.onmousemove = e => {
 					const delta = e.pageX - coords.right
 					const newWidth = coords.width + delta
 					$parent.width({value: newWidth, type: 'px'})
+
+					// todo: use $$
+					columnCells.forEach(columnCell => {
+						const $cell = $(columnCell)
+						$cell.width({value: newWidth, type: 'px'})
+					})
+
+
 					// todo: resize whole column, not only header
 				}
 				break

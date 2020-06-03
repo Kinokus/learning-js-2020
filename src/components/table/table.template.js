@@ -7,6 +7,7 @@ function createCellStructure(content, indexX, indexY) {
 	return `<div	class='cell'
 								data-position-x="${indexX}"
 								data-position-y="${indexY}"
+								data-type="cell"
 					>
 						${content}
 					</div>`

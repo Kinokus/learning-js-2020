@@ -42,7 +42,8 @@
 
   .column {
     position: relative;
-    min-width: $base-cell-width;
+    width: $base-cell-width;
+    min-width: $min-cell-width;
     border: 1px solid $border-color;
     height: 100%;
     border-block-start: 0;
