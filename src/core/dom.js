@@ -41,6 +41,36 @@ class Dom {
 		this.$el.classList.add(className)
 		return this
 	}
+
+	closest(selector) {
+		return $(this.$el.closest(selector))
+	}
+
+	getCoords() {
+		return this.$el.getBoundingClientRect()
+	}
+
+	width(options = {}) {
+		if (options.value) {
+			const type = options.type ? options.type : 'px'
+			this.$el.style.width = options.value + type
+		}
+		if (options.type) {
+			return this.$el.style.width
+		}
+		return this.$el.getBoundingClientRect().width
+	}
+
+	height(options = {}) {
+		if (options.value) {
+			const type = options.type ? options.type : 'px'
+			this.$el.style.height = options.value + type
+		}
+		if (options.type) {
+			return this.$el.style.height
+		}
+		return this.$el.getBoundingClientRect().height
+	}
 }
 
 export function $(selector) {
@@ -54,3 +84,6 @@ $.create = (tagname, classes = '') => {
 	}
 	return $(el)
 }
+
+
+// todo : create $$

@@ -47,6 +47,9 @@
     height: 100%;
     border-block-start: 0;
     border-inline-start: 0;
+    padding-inline-end: 0;
+    margin-inline-end: 0;
+    border-inline-end: 0;
   }
 
   .cell {
@@ -80,10 +83,11 @@
 
   .col-resize {
     top: 0;
-    width: 2px;
-
+    width: 4px;
+    border-inline-end: 1px solid $cell-border-color;
     &:hover {
       cursor: col-resize;
+      border-inline-end: 1px solid $selected-cell-outline-color;
     }
   }
 
