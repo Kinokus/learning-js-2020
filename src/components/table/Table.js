@@ -29,14 +29,10 @@ export class Table extends ExcelComponent {
 			const $resizer = $(event.target)
 			const $parent = $resizer.closest('[data-type="resizable"]')
 			const coords = $parent.getCoords()
-			console.log($parent);
-
-
-			const dataPositionX = $parent.$el.getAttribute('data-position-x')
+			const dataPositionX = $parent.data.positionX
 			const columnCellsSelector
 				= `[data-position-x="${dataPositionX}"][data-type="cell"]`
-			const columnCells = document.querySelectorAll(columnCellsSelector);
-			console.log(columnCells);
+			const columnCells = this.$root.findAll(columnCellsSelector);
 
 
 			switch (event.target.dataset.resize) {
@@ -49,11 +45,8 @@ export class Table extends ExcelComponent {
 					// todo: use $$
 					columnCells.forEach(columnCell => {
 						const $cell = $(columnCell)
-						$cell.width({value: newWidth, type: 'px'})
+						$cell.width({value: newWidth, type: 'px'}) // madness !!!
 					})
-
-
-					// todo: resize whole column, not only header
 				}
 				break
 			}

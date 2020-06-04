@@ -46,10 +46,16 @@ class Dom {
 		return $(this.$el.closest(selector))
 	}
 
+	get data() {
+		return this.$el.dataset
+	}
+
 	getCoords() {
 		return this.$el.getBoundingClientRect()
 	}
 
+
+	// todo: setter/getter
 	width(options = {}) {
 		if (options.value) {
 			const type = options.type ? options.type : 'px'
@@ -61,6 +67,8 @@ class Dom {
 		return this.$el.getBoundingClientRect().width
 	}
 
+
+	// todo: setter/getter
 	height(options = {}) {
 		if (options.value) {
 			const type = options.type ? options.type : 'px'
@@ -70,6 +78,10 @@ class Dom {
 			return this.$el.style.height
 		}
 		return this.$el.getBoundingClientRect().height
+	}
+
+	findAll(selector) {
+		return this.$el.querySelectorAll(selector)
 	}
 }
 
