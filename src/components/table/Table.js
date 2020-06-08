@@ -22,31 +22,34 @@ export class Table extends ExcelComponent {
 
 
 	onMousedown(event) {
-		if (event.target.dataset) {
-			console.log(event.target.dataset);
-		}
 		if (event.target.dataset.resize) {
 			const $resizer = $(event.target)
 			const $parent = $resizer.closest('[data-type="resizable"]')
 			const coords = $parent.getCoords()
 			const dataPositionX = $parent.data.positionX
-			const columnCellsSelector
-				= `[data-position-x="${dataPositionX}"][data-type="cell"]`
-			const columnCells = this.$root.findAll(columnCellsSelector);
-
-
+			let columnCells = null
+			let widthObject = null
 			switch (event.target.dataset.resize) {
 			case 'col': {
+				const columnCellsSelector
+					= `[data-position-x="${dataPositionX}"][data-type="cell"]`
+				columnCells = this.$root.findAll(columnCellsSelector)
+				widthObject = {}
 				document.onmousemove = e => {
 					const delta = e.pageX - coords.right
 					const newWidth = coords.width + delta
-					$parent.width({value: newWidth, type: 'px'})
-
-					// todo: use $$
-					columnCells.forEach(columnCell => {
-						const $cell = $(columnCell)
-						$cell.width({value: newWidth, type: 'px'}) // madness !!!
-					})
+					widthObject.value = newWidth
+					widthObject.type = 'px'
+					$parent.width = widthObject
+				}
+				document.onmouseup = e => {
+					if (columnCells) {
+						columnCells.forEach(columnCell => {
+							const $cell = $(columnCell)
+							$cell.width = widthObject
+						})
+					}
+					document.onmousemove = null
 				}
 				break
 			}
@@ -56,31 +59,15 @@ export class Table extends ExcelComponent {
 					const newHeigth = coords.height + delta
 					$parent.height({value: newHeigth, type: 'px'})
 				}
+				document.onmouseup = e => {
+					document.onmousemove = null
+				}
 				break
 			}
 			default: {
 				throw new Error('something went wrong')
 			}
 			}
-
-			document.onmouseup = e => {
-				document.onmousemove = null
-			}
-
-
-			// todo: move to class
-			// const column = $(event.target.closest('.column'))
-			// $target.on('mousemove', (event) => {
-			// 	const currentWidth = column.$el.getBoundingClientRect().width
-			// 	column.$el.style.width = currentWidth + event.movementX + 'px'
-			// })
-			//
-			// column.on('mouseup', (event) => {
-			// 	$target.off('mousemove')
-			// })
-			// $target.on('mouseup', (event) => {
-			// 	$target.off('mousemove')
-			// })
 		}
 	}
 

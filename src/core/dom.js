@@ -56,28 +56,52 @@ class Dom {
 
 
 	// todo: setter/getter
-	width(options = {}) {
+	set width(options) {
+		if (!options) {
+			throw new Error('value not correct')
+		}
 		if (options.value) {
 			const type = options.type ? options.type : 'px'
 			this.$el.style.width = options.value + type
 		}
 		if (options.type) {
-			return this.$el.style.width
+			// return this.$el.style.width
 		}
+		// return this.$el.getBoundingClientRect().width
+	}
+
+	get width() {
 		return this.$el.getBoundingClientRect().width
 	}
 
+	get widthWithCss() {
+		return this.$el.style.width
+	}
 
-	// todo: setter/getter
-	height(options = {}) {
+	set height(options) {
 		if (options.value) {
 			const type = options.type ? options.type : 'px'
 			this.$el.style.height = options.value + type
 		}
-		if (options.type) {
-			return this.$el.style.height
-		}
+	}
+
+	get height() {
 		return this.$el.getBoundingClientRect().height
+	}
+
+	get heightWithCss() {
+		return this.$el.style.height
+	}
+
+
+	set css(style) {
+		if (style) {
+			this.$el.style = style
+		}
+	}
+
+	get css() {
+		return this.$el.style
 	}
 
 	findAll(selector) {
