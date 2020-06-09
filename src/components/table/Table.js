@@ -57,7 +57,8 @@ export class Table extends ExcelComponent {
 				document.onmousemove = e => {
 					const delta = e.pageY - coords.bottom
 					const newHeigth = coords.height + delta
-					$parent.height({value: newHeigth, type: 'px'})
+					// $parent.height = {value: newHeigth, type: 'px'}
+					$parent.css = {height: `${newHeigth}px`}
 				}
 				document.onmouseup = e => {
 					document.onmousemove = null

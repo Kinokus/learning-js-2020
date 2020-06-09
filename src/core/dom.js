@@ -96,7 +96,11 @@ class Dom {
 
 	set css(style) {
 		if (style) {
-			this.$el.style = style
+			Object
+				.keys(style)
+				.forEach(key => {
+					this.$el.style[key] = style[key]
+				})
 		}
 	}
 
