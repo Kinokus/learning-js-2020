@@ -1,35 +1,38 @@
 import {ExcelComponent} from '@core/ExcelComponent';
 import {createTable} from '@/components/table/table.template';
+import {resizeHandler} from '@/components/table/table.resize';
+import {shoudResize} from '@/components/table/table.functions';
 
 export class Table extends ExcelComponent {
 	static className = 'excel__table'
+	currentResizer;
+
+	constructor($root) {
+		super($root, {
+			listeners: ['mousedown', 'mouseup']
+		});
+	}
+
 	toHtml() {
 		return createTable(100)
-		// return `
-		//     <div class="row">
-		//         <div class="row-info"></div>
-		//         <div class="row-data">
-		//             <div class="column">A</div>
-		//             <div class="column">B</div>
-		//             <div class="column">C</div>
-		//         </div>
-		//     </div>
-		//     <div class="row">
-		//         <div class="row-info"> 1</div>
-		//         <div class="row-data">
-		//             <div class="cell" contenteditable>a 100</div>
-		//             <div class="cell" contenteditable>b 200</div>
-		//             <div class="cell" contenteditable>c 300</div>
-		//         </div>
-		//     </div>
-		//     <div class="row">
-		//         <div class="row-info"> 2</div>
-		//         <div class="row-data">
-		//             <div class="cell" contenteditable>a 200</div>
-		//             <div class="cell selected" contenteditable>b 400</div>
-		//             <div class="cell" contenteditable>c 600</div>
-		//         </div>
-		//     </div>
-		// `
+	}
+
+	onClick() {
+		console.log('click')
+	}
+
+
+	onMousedown(event) {
+		if (shoudResize(event)) {
+			resizeHandler(this.$root, event)
+		}
+	}
+
+	onMouseup(event) {
+		// todo: remove mousemove
+	}
+
+	onMousemove() {
+		console.log('mousemove')
 	}
 }

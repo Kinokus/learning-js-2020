@@ -41,6 +41,81 @@ class Dom {
 		this.$el.classList.add(className)
 		return this
 	}
+
+	removeClass(className) {
+		this.$el.classList.remove(className)
+		return this
+	}
+
+	closest(selector) {
+		return $(this.$el.closest(selector))
+	}
+
+	get data() {
+		return this.$el.dataset
+	}
+
+	getCoords() {
+		return this.$el.getBoundingClientRect()
+	}
+
+
+	// todo: setter/getter
+	set width(options) {
+		if (!options) {
+			throw new Error('value not correct')
+		}
+		if (options.value) {
+			const type = options.type ? options.type : 'px'
+			this.$el.style.width = options.value + type
+		}
+		if (options.type) {
+			// return this.$el.style.width
+		}
+		// return this.$el.getBoundingClientRect().width
+	}
+
+	get width() {
+		return this.$el.getBoundingClientRect().width
+	}
+
+	get widthWithCss() {
+		return this.$el.style.width
+	}
+
+	set height(options) {
+		if (options.value) {
+			const type = options.type ? options.type : 'px'
+			this.$el.style.height = options.value + type
+		}
+	}
+
+	get height() {
+		return this.$el.getBoundingClientRect().height
+	}
+
+	get heightWithCss() {
+		return this.$el.style.height
+	}
+
+
+	set css(style) {
+		if (style) {
+			Object
+				.keys(style)
+				.forEach(key => {
+					this.$el.style[key] = style[key]
+				})
+		}
+	}
+
+	get css() {
+		return this.$el.style
+	}
+
+	findAll(selector) {
+		return this.$el.querySelectorAll(selector)
+	}
 }
 
 export function $(selector) {
@@ -54,3 +129,6 @@ $.create = (tagname, classes = '') => {
 	}
 	return $(el)
 }
+
+
+// todo : create $$

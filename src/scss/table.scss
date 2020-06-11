@@ -15,7 +15,6 @@
     flex-direction: row;
     min-height: $min-row-height;
     height: $base-row-height;
-
   }
 
   .row-info, .column {
@@ -26,7 +25,7 @@
   }
 
   .row-info {
-
+    position: relative;
     min-width: $info-cell-width;
     height: 100%;
     border: 1px solid $border-color;
@@ -42,11 +41,16 @@
   }
 
   .column {
-    min-width: $base-cell-width;
+    position: relative;
+    width: $base-cell-width;
+    min-width: $min-cell-width;
     border: 1px solid $border-color;
     height: 100%;
     border-block-start: 0;
     border-inline-start: 0;
+    padding-inline-end: 0;
+    margin-inline-end: 0;
+    border-inline-end: 0;
   }
 
   .cell {
@@ -64,6 +68,50 @@
     &.selected {
       border: none;
       outline: 2px solid $selected-cell-outline-color;
+    }
+  }
+
+  .col-resize{
+    &.active {
+      bottom: -5000px;
+    }
+  }
+  .row-resize{
+    &.active {
+      right: -5000px;
+    }
+  }
+
+  .col-resize, .row-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    &:hover, &.active {
+      background-color: $selected-cell-outline-color;
+    }
+    &.active {
+      z-index: 1000
+    }
+
+  }
+
+  .col-resize {
+    top: 0;
+    width: 4px;
+    border-inline-end: 1px solid $cell-border-color;
+    &:hover {
+      cursor: col-resize;
+      border-inline-end: 1px solid $selected-cell-outline-color;
+    }
+  }
+
+  .row-resize {
+    left: 0;
+    height: 2px;
+
+    &:hover {
+      cursor: row-resize;
     }
   }
 
