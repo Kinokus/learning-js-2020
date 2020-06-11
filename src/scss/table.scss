@@ -71,13 +71,27 @@
     }
   }
 
+  .col-resize{
+    &.active {
+      bottom: -5000px;
+    }
+  }
+  .row-resize{
+    &.active {
+      right: -5000px;
+    }
+  }
+
   .col-resize, .row-resize {
     position: absolute;
     bottom: 0;
     right: 0;
 
-    &:hover {
+    &:hover, &.active {
       background-color: $selected-cell-outline-color;
+    }
+    &.active {
+      z-index: 1000
     }
 
   }

@@ -42,6 +42,11 @@ class Dom {
 		return this
 	}
 
+	removeClass(className) {
+		this.$el.classList.remove(className)
+		return this
+	}
+
 	closest(selector) {
 		return $(this.$el.closest(selector))
 	}
