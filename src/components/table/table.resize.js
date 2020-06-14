@@ -5,7 +5,7 @@ export function resizeHandler($root, event) {
 	$resizer.addClass('active')
 	const $parent = $resizer.closest('[data-type="resizable"]')
 	const coords = $parent.getCoords()
-	const dataPositionX = $parent.data.positionX
+	const dataPositionX = $parent.data.col
 	let columnCells = null
 	let delta
 	let value
@@ -20,7 +20,7 @@ export function resizeHandler($root, event) {
 		}
 		document.onmouseup = e => {
 			const columnCellsSelector
-				= `[data-position-x="${dataPositionX}"][data-type="cell"]`
+				= `[data-col="${dataPositionX}"][data-type="cell"]`
 			columnCells = $root.findAll(columnCellsSelector)
 			$parent.css = {width: `${value}px`}
 			columnCells.forEach(columnCell => {

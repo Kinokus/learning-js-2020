@@ -3,20 +3,36 @@ const CODES = {
 	Z: 90
 }
 
-function createCellStructure(content, indexX, indexY) {
-	return `<div	class='cell'
-								data-position-x="${indexX}"
-								data-position-y="${indexY}"
+function toCell(indexY) {
+	return (content, indexX) => {
+		const positionX = String.fromCharCode(CODES.A + indexX)
+		return `<div	class='cell'
+								data-col="${positionX}"
+								data-row="${indexY + 1}"
+								data-pos-vertical = "${indexY}"
+								data-pos-horizontal = "${indexX}"
+								data-cell-name = "${positionX}${indexY + 1}"
 								data-type="cell"
 					>
 						${content}
 					</div>`
+	}
 }
+
+// function createCellStructure(content, indexX, indexY) {
+// 	return `<div	class='cell'
+// 								data-col="${indexX}"
+// 								data-row="${indexY}"
+// 								data-type="cell"
+// 					>
+// 						${content}
+// 					</div>`
+// }
 
 function createColumnStructure(content, indexX) {
 	const dataPosition = String.fromCharCode(CODES.A + indexX)
 	return `
-		<div class='column' data-type="resizable" data-position-x="${dataPosition}">
+		<div class='column' data-type="resizable" data-col="${dataPosition}">
 			${content}
 			<div class="col-resize" data-resize="col"></div>
 		</div>
@@ -62,10 +78,7 @@ export function createTable(rowsCount = 15) {
 	for (let index = 0; index < rowsCount; index++) {
 		const cells = new Array(columnCount)
 			.fill('')
-			.map((v, i) => {
-				const positionX = String.fromCharCode(CODES.A + i)
-				return createCellStructure(v, positionX, index + 1)
-			})
+			.map(toCell(index))
 			.join('')
 
 		rows.push(createRowStructure(cells, index + 1))

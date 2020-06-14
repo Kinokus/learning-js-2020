@@ -2,6 +2,7 @@ import {ExcelComponent} from '@core/ExcelComponent';
 import {createTable} from '@/components/table/table.template';
 import {resizeHandler} from '@/components/table/table.resize';
 import {shoudResize} from '@/components/table/table.functions';
+import {TableSelection} from '@/components/table/TableSelection';
 
 export class Table extends ExcelComponent {
 	static className = 'excel__table'
@@ -18,9 +19,14 @@ export class Table extends ExcelComponent {
 	}
 
 	onClick() {
-		console.log('click')
+
 	}
 
+
+	init() {
+		super.init()
+		this.selection = new TableSelection()
+	}
 
 	onMousedown(event) {
 		if (shoudResize(event)) {
@@ -29,10 +35,10 @@ export class Table extends ExcelComponent {
 	}
 
 	onMouseup(event) {
-		// todo: remove mousemove
+
 	}
 
 	onMousemove() {
-		console.log('mousemove')
+
 	}
 }
