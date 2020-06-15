@@ -114,7 +114,11 @@ class Dom {
 	}
 
 	findAll(selector) {
-		return this.$el.querySelectorAll(selector)
+		const foundCells = [...this.$el.querySelectorAll(selector)]
+		return foundCells.map(e=>$(e))
+	}
+	find(selector) {
+		return $(this.$el.querySelector(selector))
 	}
 }
 

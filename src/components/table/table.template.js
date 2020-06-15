@@ -12,6 +12,9 @@ function toCell(indexY) {
 								data-pos-vertical = "${indexY}"
 								data-pos-horizontal = "${indexX}"
 								data-cell-name = "${positionX}${indexY + 1}"
+								data-cell-id = "${indexX}:${indexY}"
+								data-type = "cell"
+								data-selectable = "${true}"
 								data-type="cell"
 					>
 						${content}

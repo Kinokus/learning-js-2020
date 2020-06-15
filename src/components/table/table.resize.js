@@ -24,8 +24,7 @@ export function resizeHandler($root, event) {
 			columnCells = $root.findAll(columnCellsSelector)
 			$parent.css = {width: `${value}px`}
 			columnCells.forEach(columnCell => {
-				const $cell = $(columnCell)
-				$cell.css = {width: `${value}px`}
+				columnCell.css = {width: `${value}px`}
 			})
 			$resizer.removeClass('active')
 			$resizer.css = {right: 0}
