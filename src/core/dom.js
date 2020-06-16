@@ -46,11 +46,11 @@ class Dom {
 		if (parse) {
 			const id = this.id()
 			return {
-				row: id.split(':')[1],
-				col: id.split(':')[0]
+				row: parseInt(id.split(':')[1]),
+				col: parseInt(id.split(':')[0])
 			}
 		}
-		return this.data.id
+		return this.data.cellId
 	}
 
 	removeClass(className) {
