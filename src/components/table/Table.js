@@ -41,49 +41,14 @@ export class Table extends ExcelComponent {
 		}
 		if (isCell(event)) {
 			const $target = $(event.target)
-			const $selected = this.selection.group
+			const $selected = this.selection.current
 
-			if ($selected.length === 1 && event.shiftKey) {
-				// todo: select by two targets into function
-				this.selection.selectMultiple($target, $selected[0])
+			if (event.shiftKey) {
+				this.selection.selectMultiple($target, $selected)
 			} else if (!event.shiftKey && !event.ctrlKey) {
 				document.onmouseup = e => {
 					const $upTarget = $(e.target)
 					this.selection.selectMultiple($target, $upTarget)
-					// const sv = parseInt($target.data.posVertical)
-					// const sh = parseInt($target.data.posHorizontal)
-					// const ev = parseInt($upTarget.data.posVertical)
-					// const eh = parseInt($upTarget.data.posHorizontal)
-					//
-					// this.selection.clear()
-					//
-					// console.log(sv, sh, ev, eh);
-					// for (let x = sh; ;) {
-					// 	for (let y = sv; ;) {
-					// 		// console.log($(`[data-cell-id="${x}:${y}"]`));
-					// 		this.selection.select($(`[data-cell-id="${x}:${y}"]`))
-					// 		if (y === ev || sv === ev) {
-					// 			break
-					// 		}
-					// 		if (sv < ev) {
-					// 			y++
-					// 		}
-					// 		if (sv > ev) {
-					// 			y--
-					// 		}
-					// 	}
-					// 	if (x === eh || sh === eh) {
-					// 		break
-					// 	}
-					// 	if (sh < eh) {
-					// 		x++
-					// 	}
-					// 	if (sh > eh) {
-					// 		x--
-					// 	}
-					// }
-
-
 					document.onmouseup = null
 				}
 			} else {

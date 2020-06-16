@@ -5,18 +5,18 @@ export class TableSelection {
 
 	constructor() {
 		this.group = []
+		this.current = null
 	}
 
 	selectMultiple($el1, $el2) {
+		$el2 = $el2 ? $el2 : this.current
 		const sv = parseInt($el1.data.posVertical)
 		const sh = parseInt($el1.data.posHorizontal)
 		const ev = parseInt($el2.data.posVertical)
 		const eh = parseInt($el2.data.posHorizontal)
 		this.clear()
-		console.log(sv, sh, ev, eh);
 		for (let x = sh; ;) {
 			for (let y = sv; ;) {
-				// console.log($(`[data-cell-id="${x}:${y}"]`));
 				this.select($(`[data-cell-id="${x}:${y}"]`))
 				if (y === ev || sv === ev) {
 					break
@@ -45,12 +45,14 @@ export class TableSelection {
 			this.clear()
 		}
 		this.group.push($el)
+		this.current = $el
 		$el.addClass(TableSelection.className)
 	}
 
 	clear() {
-		this.group.forEach(e=>e.removeClass(TableSelection.className))
+		this.group.forEach(e => e.removeClass(TableSelection.className))
 		this.group = []
+		this.current = null
 	}
 
 	selectGroup() {

@@ -42,6 +42,17 @@ class Dom {
 		return this
 	}
 
+	id(parse) {
+		if (parse) {
+			const id = this.id()
+			return {
+				row: id.split(':')[1],
+				col: id.split(':')[0]
+			}
+		}
+		return this.data.id
+	}
+
 	removeClass(className) {
 		this.$el.classList.remove(className)
 		return this
@@ -115,8 +126,9 @@ class Dom {
 
 	findAll(selector) {
 		const foundCells = [...this.$el.querySelectorAll(selector)]
-		return foundCells.map(e=>$(e))
+		return foundCells.map(e => $(e))
 	}
+
 	find(selector) {
 		return $(this.$el.querySelector(selector))
 	}
