@@ -1,5 +1,5 @@
 import {$} from '@core/dom';
-import {range} from '@/components/table/table.functions';
+import {matrix, range} from '@/components/table/table.functions';
 
 export class TableSelection {
 	static className = 'selected'
@@ -9,24 +9,19 @@ export class TableSelection {
 		this.current = null
 	}
 
-	selectMultiple($el1, $el2) {
+	selectMultiple($el1, $el2, clear = true) {
+		if (clear) {
+			this.clear()
+		}
 		$el2 = $el2 ? $el2 : this.current
 		const vRange
 			= range($el1.id(true).row, $el2.id(true).row)
 		const hRange
 			= range($el1.id(true).col, $el2.id(true).col)
 
-		const cellsIds = hRange.reduce(
-			(acc, col) => {
-				vRange.forEach(row => acc.push(`${col}:${row}`))
-				return acc
-			},
-			[])
-
+		const cellsIds = matrix(hRange, vRange)
 		this.clear()
-		console.log(cellsIds);
 		cellsIds.forEach((cellId) => {
-			console.log(cellId);
 			this.select($(`[data-cell-id="${cellId}"]`))
 		})
 	}

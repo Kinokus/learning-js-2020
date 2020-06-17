@@ -8,9 +8,6 @@ export function isCell(event) {
 
 export function range(start, end) {
 	if (start > end) {
-		// start = start + end
-		// end = start - end
-
 		[end, start] = [start, end]
 	}
 	return new Array(end - start + 1)
@@ -18,3 +15,11 @@ export function range(start, end) {
 		.map((_, i) => start + i)
 }
 
+export function matrix(hRange, vRange) {
+	return hRange.reduce(
+		(acc, col) => {
+			vRange.forEach(row => acc.push(`${col}:${row}`))
+			return acc
+		},
+		[])
+}
