@@ -15,12 +15,20 @@ export class TableSelection {
 			= range($el1.id(true).row, $el2.id(true).row)
 		const hRange
 			= range($el1.id(true).col, $el2.id(true).col)
+
+		const cellsIds = hRange.reduce(
+			(acc, col) => {
+				vRange.forEach(row => acc.push(`${col}:${row}`))
+				return acc
+			},
+			[])
+
 		this.clear()
-		for (let x = hRange[0]; x <= hRange[hRange.length - 1]; x++) {
-			for (let y = vRange[0]; y <= vRange[vRange.length - 1]; y++) {
-				this.select($(`[data-cell-id="${x}:${y}"]`))
-			}
-		}
+		console.log(cellsIds);
+		cellsIds.forEach((cellId) => {
+			console.log(cellId);
+			this.select($(`[data-cell-id="${cellId}"]`))
+		})
 	}
 
 	select($el, clear = false) {
